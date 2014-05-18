@@ -1,0 +1,26 @@
+<ul ng-controller='viewsController'>
+  <a href='javaScript:void(0);' ng-click="changeView('/')" id='logo'>WordSpark</a>
+
+  <!-- <form class='search' ng-show='auth.user' ng-controller='accountController'>
+    <input ng-model='searchText' type='search' placeholder='keyword or date'>
+  </form> -->
+
+  <li><a href='javaScript:void(0);' ng-click="changeView('/')">home</a></li>
+  <li><a href='javaScript:void(0);' ng-click="changeView('/contact')">contact</a></li>
+  <li><a href='javaScript:void(0);' ng-click="changeView('/account')">quotes</a></li>
+  
+  <li ng-controller='accountController'>
+    <a href='javaScript:void(0);' ng-click="changeView('/account')">
+      account  <span ng-show='auth.user' class='caret'></span>
+    </a>
+    &nbsp
+    <div ng-show='auth.user'>
+      <ul>
+        <li><a href='javaScript:void(0);'>settings</a></li>
+        <li><a ng-click='logout()' href='javaScript:void(0);'>logout</a></li>
+      </ul>
+    </div>
+    </a>
+  </li>
+
+</ul>
