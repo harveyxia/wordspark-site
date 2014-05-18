@@ -1,0 +1,52 @@
+<!-- QUOTES -->
+<div ng-show='auth.user' class='commonplace'>
+
+  <section class='quotes'>
+
+    <div class='quote-functions'>
+      <form class='new-quote'>
+        <textarea ng-model='newQuote' id='quote-area'
+          placeholder='    Add a quote...'></textarea>
+        <a ng-click='submitQuote()' id='submit-quote' href="javascript:void(0);" class='button button-block'>Submit</a>
+      </form>
+      <form class='search'>
+        <input ng-model='searchText' type='search' placeholder='keyword'>
+      </form>
+      <div class='successMessage' ng-if='successMessage'>{{successMessage}}</div>
+      <div class='failMessage' ng-if='failMessage'>{{failMessage}}</div>
+
+      <script src="js/utility.js"></script>
+    </div>
+
+    <div class='quote' ng-repeat="quote in quotes|orderByPriority|orderBy:'-created_at'| filter:searchText">
+      <blockquote id={{quote.$id}}>{{quote.text}}</blockquote>
+      <span class='quote-info'>
+          {{getTime(quote.created_at)}} <br>
+          <a class='quote-url' ng-if='quote.url' href="{{quote.url}}">
+          {{getDomain(quote.url)}} </a>
+          <span ng-if='!quote.url'>hand written</span>
+          <a ng-click='deleteQuote(quote.$id)' href="javascript:void(0)" class='delete-quote'>Delete</a> | 
+          <a ng-click='editQuote(quote.$id)' href="javascript:void(0)" class='edit-quote'>Edit</a>
+      </span>
+    </div>
+  </section>
+</div>
+
+<!-- LOGIN FORM -->
+<div ng-show="loginForm" style="height: 100%;">
+  <div class='login-wrapper'>
+    <form class='login-form'>
+      <ul>
+        <li>
+          <label for='login-email'>Email Address</label>
+          <input id='login-email' ng-model='loginEmail' placeholder='Email' tabindex="1" required>
+        </li>
+        <li>
+          <label for='login-password'>Password</label>
+          <input id='login-password' type='password' ng-model='loginPassword' tabindex="1" placeholder='Password' required>
+        </li>
+        <a href='javaScript:void(0);' class="button button-block button-rounded button-flat-primary" ng-click="login()">Login</a>
+      </ul>
+    </form>
+  </div>
+</div>

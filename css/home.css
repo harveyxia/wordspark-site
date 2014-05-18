@@ -1,0 +1,53 @@
+.intro {
+    /*height: 700px;*/
+    height: 100%;
+
+    background: url(/images/journal5.jpg) no-repeat top left fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.home {
+    color: white;
+    font-family: 'Sorts Mill Goudy', serif;
+    /* center horizontally */
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    background-color: rgba(37, 37, 37, 0.29);
+    border-radius: 10px;
+    text-align: left;
+}
+
+.description {
+    top: 15%;
+    width: 700px;
+    padding: 10px 20px 40px 40px;
+}
+
+#tagline {
+    text-align: center;
+    font-size: 36px;
+}
+
+#pitch {
+    font-size: 20px;
+    line-height: 1.6em;
+}
+
+.example-quote {
+    width: 80%;
+    top: 60%;
+    font-size: 20px;
+    line-height: 1.6em;
+    padding: 20px;
+    background: none;
+}
+
+.example-quote #author {
+    text-align: right;
+}
