@@ -68,6 +68,8 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
           password: $scope.loginPassword
         }).then(function(user) {
           UserService.update(false);
+          // $scope.user = user;
+          getCurrentUser();
         }, function(error) {
           
         });
