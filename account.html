@@ -45,7 +45,8 @@
           <label for='login-password'>Password</label>
           <input id='login-password' type='password' ng-model='loginPassword' tabindex="1" placeholder='Password' required>
         </li>
-        <a href='javaScript:void(0);' class="button button-block button-rounded button-flat-primary" ng-click="login()">Login</a>
+        <a href='javaScript:void(0);' class="button button-block button-rounded button-flat-primary" ng-click="login(loginEmail, loginPassword)">Login</a>
+        <a href='javaScript:void(0);' class="signup button button-block button-rounded button-flat-action" ng-click="createUser()">Sign Up</a>
       </ul>
     </form>
   </div>
