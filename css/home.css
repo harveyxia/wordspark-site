@@ -41,7 +41,7 @@
 
 .example-quote {
     width: 80%;
-    top: 60%;
+    top: 500px;
     font-size: 20px;
     line-height: 1.6em;
     padding: 20px;
@@ -50,4 +50,11 @@
 
 .example-quote #author {
     text-align: right;
+}
+
+.description > a {
+    margin: 10px auto 0 auto;
+    display: block;
+    width: 200px;
+    /*margin-top: 10px;*/
 }
