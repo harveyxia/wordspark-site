@@ -62,13 +62,13 @@
 
 .social-media > a {
     margin-left: 20px;
+    /* fixes trim effect bottom cutting off */
+    height: 64px;
 }
 
 .social-media img {
     width: 64px;
     height: 64px;
-    /* fixes trim effect bottom cutting off */
-    margin-bottom: -4px;
 }
 
 #gmail {

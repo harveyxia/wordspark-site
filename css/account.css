@@ -291,3 +291,9 @@ input::-webkit-search-cancel-button {
   background-color: rgba(248, 119, 119, 0.26);
   font-family: Raleway, sans-serif;
 }
+
+.signup {
+  top: 10px;
+  position: relative;
+}
+}

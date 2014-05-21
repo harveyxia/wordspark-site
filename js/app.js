@@ -62,18 +62,31 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
     // Wait until content loads, and user loads, before loading content
     $scope.$watch('$viewContentLoaded', getCurrentUser());
 
-    $scope.login = function() {
+    $scope.login = function(email, password) {
       $scope.auth.$login('password', {
-          email: $scope.loginEmail,
-          password: $scope.loginPassword
+          // email: $scope.loginEmail,
+          // password: $scope.loginPassword,
+          email: email,
+          password: password,
+          rememberMe: true
         }).then(function(user) {
           UserService.update(false);
-          // $scope.user = user;
           getCurrentUser();
         }, function(error) {
-          
+          console.log(error);
         });
     };
+
+    $scope.createUser = function() {
+      $scope.auth.$createUser($scope.loginEmail, $scope.loginPassword)
+      .then(function(user) {
+          UserService.update(false);
+          $scope.login($scope.loginEmail, $scope.loginPassword);
+          getCurrentUser();
+        }, function(error) {
+          console.log(error);
+        });
+    }
 
     // $scope.login = function() {
     //   $scope.auth.$login('google', {
@@ -138,13 +151,6 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         var new_text = $(this).text();
         quoteRef.$update({text: new_text});
       });
-      // var quoteHtml = $('#' + key).html();
-      // var editableText = $('<textarea />');
-      // editableText.val(quoteHtml);
-      // $('#' + key).replaceWith(editableText);
-      // editableText.focus();
-
-      // quoteRef.$update({text: 'This has been updated'});
     }
   }
 ]);
