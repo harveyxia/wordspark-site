@@ -10,10 +10,10 @@
         <a ng-click='submitQuote()' id='submit-quote' href="javascript:void(0);" class='button button-block'>Submit</a>
       </form>
       <form class='search'>
-        <input ng-model='searchText' type='search' placeholder='keyword'>
+        <input ng-model='searchText' type='search' placeholder='search'>
       </form>
-      <div class='successMessage' ng-if='successMessage'>{{successMessage}}</div>
-      <div class='failMessage' ng-if='failMessage'>{{failMessage}}</div>
+      <div class='success-message' ng-if='successMessage'>{{successMessage}}</div>
+      <div class='fail-message' ng-if='failMessage'>{{failMessage}}</div>
 
       <script src="js/utility.js"></script>
     </div>
@@ -48,6 +48,7 @@
         <a href='javaScript:void(0);' class="button button-block button-rounded button-flat-primary" ng-click="login(loginEmail, loginPassword)">Login</a>
         <a href='javaScript:void(0);' class="signup button button-block button-rounded button-flat-action" ng-click="createUser()">Sign Up</a>
       </ul>
+      <p ng-if="failMessage" class='fail-message' style='margin: 0 auto;position: relative;top: -13px;'>{{failMessage}}</p>
     </form>
   </div>
 </div>

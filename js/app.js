@@ -73,7 +73,8 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
           UserService.update(false);
           getCurrentUser();
         }, function(error) {
-          console.log(error);
+          $scope.failMessage = getError(error.message);
+          $timeout(function () { $scope.failMessage = ''; }, 3000);
         });
     };
 
@@ -84,7 +85,8 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
           $scope.login($scope.loginEmail, $scope.loginPassword);
           getCurrentUser();
         }, function(error) {
-          console.log(error);
+          $scope.failMessage = getError(error.message);
+          $timeout(function () { $scope.failMessage = ''; }, 3000);
         });
     }
 
@@ -165,3 +167,9 @@ app.controller('homeController', ['$http', '$rootScope', '$scope', '$firebase', 
       });
   }
 ]);
+
+// strips junk from Firebase error message
+function getError(error) {
+  var index = error.lastIndexOf(': ') + 2;
+  return error.substring(index)
+}

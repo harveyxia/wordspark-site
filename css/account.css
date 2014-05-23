@@ -176,6 +176,10 @@ blockquote:before {
 }
 
 .search input {
+  position: relative;
+  left: 3px;
+  top: 15px;
+
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
@@ -241,6 +245,8 @@ input::-webkit-search-cancel-button {
 .new-quote {
   display: inline;
   position: relative;
+  left: 3px;
+  top: 15px;
 }
 
 #quote-area:hover {
@@ -274,7 +280,7 @@ input::-webkit-search-cancel-button {
   transition: all .5s;
 }
 
-.successMessage {
+.success-message {
   width: 120px;
   padding: 5px;
   border: 1px solid #2BC02B;
@@ -283,7 +289,7 @@ input::-webkit-search-cancel-button {
   font-family: Raleway, sans-serif;
 }
 
-.failMessage {
+.fail-message {
   width: 210px;
   padding: 5px;
   border: 1px solid #DA6060;
