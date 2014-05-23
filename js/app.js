@@ -4,9 +4,13 @@ var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
 // routing
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-  $routeProvider.when('/',  {templateUrl: 'home.html', controller: 'homeController' });
-  $routeProvider.when('/account',  {templateUrl: 'account.html', controller: 'accountController'});
-  $routeProvider.when('/contact',  {templateUrl: 'contact.html', controller: ''});
+  // use the HTML5 History API
+  $locationProvider.html5Mode(true);
+
+  $routeProvider.when('/',  {templateUrl: 'home.html', controller: 'homeController' }).
+                 when('/account',  {templateUrl: 'account.html', controller: 'accountController'}).
+                 when('/contact',  {templateUrl: 'contact.html', controller: ''}).
+                 otherwise({ redirectTo: '/' });
 }]);
 
 // getCurrentUser wrapper
@@ -62,16 +66,33 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
     // Wait until content loads, and user loads, before loading content
     $scope.$watch('$viewContentLoaded', getCurrentUser());
 
-    $scope.login = function() {
+    $scope.login = function(email, password) {
       $scope.auth.$login('password', {
-          email: $scope.loginEmail,
-          password: $scope.loginPassword
+          // email: $scope.loginEmail,
+          // password: $scope.loginPassword,
+          email: email,
+          password: password,
+          rememberMe: true
         }).then(function(user) {
           UserService.update(false);
+          getCurrentUser();
         }, function(error) {
-          
+          $scope.failMessage = getError(error.message);
+          $timeout(function () { $scope.failMessage = ''; }, 3000);
         });
     };
+
+    $scope.createUser = function() {
+      $scope.auth.$createUser($scope.loginEmail, $scope.loginPassword)
+      .then(function(user) {
+          UserService.update(false);
+          $scope.login($scope.loginEmail, $scope.loginPassword);
+          getCurrentUser();
+        }, function(error) {
+          $scope.failMessage = getError(error.message);
+          $timeout(function () { $scope.failMessage = ''; }, 3000);
+        });
+    }
 
     // $scope.login = function() {
     //   $scope.auth.$login('google', {
@@ -136,13 +157,6 @@ app.controller('accountController', ['UserService', '$rootScope', '$scope', '$fi
         var new_text = $(this).text();
         quoteRef.$update({text: new_text});
       });
-      // var quoteHtml = $('#' + key).html();
-      // var editableText = $('<textarea />');
-      // editableText.val(quoteHtml);
-      // $('#' + key).replaceWith(editableText);
-      // editableText.focus();
-
-      // quoteRef.$update({text: 'This has been updated'});
     }
   }
 ]);
@@ -157,3 +171,9 @@ app.controller('homeController', ['$http', '$rootScope', '$scope', '$firebase', 
       });
   }
 ]);
+
+// strips junk from Firebase error message
+function getError(error) {
+  var index = error.lastIndexOf(': ') + 2;
+  return error.substring(index)
+}
