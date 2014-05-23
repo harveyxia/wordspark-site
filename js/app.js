@@ -7,6 +7,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
   $routeProvider.when('/',  {templateUrl: 'home.html', controller: 'homeController' });
   $routeProvider.when('/account',  {templateUrl: 'account.html', controller: 'accountController'});
   $routeProvider.when('/contact',  {templateUrl: 'contact.html', controller: ''});
+  // use the HTML5 History API
+  $locationProvider.html5Mode(true);
 }]);
 
 // getCurrentUser wrapper
