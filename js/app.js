@@ -4,11 +4,13 @@ var app = angular.module('app', ['ngRoute','firebase', 'ngAnimate']);
 
 // routing
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-  $routeProvider.when('/',  {templateUrl: 'home.html', controller: 'homeController' });
-  $routeProvider.when('/account',  {templateUrl: 'account.html', controller: 'accountController'});
-  $routeProvider.when('/contact',  {templateUrl: 'contact.html', controller: ''});
   // use the HTML5 History API
   $locationProvider.html5Mode(true);
+
+  $routeProvider.when('/',  {templateUrl: 'home.html', controller: 'homeController' }).
+                 when('/account',  {templateUrl: 'account.html', controller: 'accountController'}).
+                 when('/contact',  {templateUrl: 'contact.html', controller: ''}).
+                 otherwise({ redirectTo: '/' });
 }]);
 
 // getCurrentUser wrapper
